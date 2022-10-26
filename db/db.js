@@ -1,5 +1,5 @@
 const pg = require('pg');
-const {Pool} = pg;
+const { Pool } = pg;
 let localPoolConfig = {
     user: 'postgres',
     password: '12345',
@@ -14,6 +14,6 @@ const poolConfig = process.env.DATABASE_URL ? {
     ssl: {rejectUnauthorized: false} } :
     localPoolConfig;
 
-    constpool = new Pool(poolConfig);
+    const pool = new Pool(poolConfig);
 
     module.exports = pool
