@@ -15,4 +15,15 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.post('/', async (req,res)=>{
+    try {
+        const hashedPassword = bcrypt.hash(req.body.password,10);
+        const newUser = await pool.query('INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURING * ',
+        [req.body.name,req.body.email,hashedPassword]);
+        res.json({users:newUser.row[0]})
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+})
+
 module.exports = router;
