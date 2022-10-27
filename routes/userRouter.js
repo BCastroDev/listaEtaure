@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 
 
 router.post('/register',userController.register)
-router.post('/login', userController.login)
+// router.post('/login', userController.login)
 
 router.get('/users', async (req,res)=>{
     try {

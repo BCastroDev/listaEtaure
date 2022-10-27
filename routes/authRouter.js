@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.post('/login', async (req,res)=>{
     try {
-    const {email, pasword} = req.body;
+    const {email, password} = req.body;
     const users = await pool.query('SELECT * FROM users WHERE user_email =  $1',[email]);
     
     //verificação do email
