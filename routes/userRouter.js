@@ -20,11 +20,11 @@ router.get('/users', async (req,res)=>{
 router.post('/add', async (req,res)=>{
     console.log(req.body)
     try {
-        const hashedPassword = bcrypt.hash(req.body.password,10);
+        const hashedPassword = await bcrypt.hash(req.body.password,10);
         const newUser = await pool.query(
         'INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING * ',
-        [req.body.name,req.body.email,hashedPassword]);
-        res.json({users:newUser.row[0]})  //esta dando erro aqui
+        [req.body.name,req.body.email, hashedPassword ]);
+        res.json({users:newUser.rows[0]})
     }
      catch (error) {
         res.status(500).json({error:error.message})
