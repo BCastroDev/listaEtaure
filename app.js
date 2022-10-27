@@ -1,12 +1,16 @@
-require('dotenv').config();
+const dotenv = require('dotenv')
 
-const express = require('express');
+const express  = require('express');
 const app = express();
 
 const bodyParser = require('body-parser') 
 
 const userRouter = require('./routes/userRouter')
 const authRouter = require('./routes/authRouter')
+
+dotenv.config();
+
+
 
 app.use(bodyParser.urlencoded());
 

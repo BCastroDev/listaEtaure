@@ -2,9 +2,11 @@ const express = require('express')
 const pool = require('../db/db.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {jwtTokens} = require('./utils/jwt-helpers')
+const { jwtTokens } = require('./utils/jwt-helpers.js')
 
 const router = express.Router()
+
+
 
 router.post('/login', async (req,res)=>{
     try {
@@ -16,12 +18,16 @@ router.post('/login', async (req,res)=>{
 
     //verificação da senha
     const validPassword = await bcrypt.compare(password,users.rows[0].user_password)
-    if(!validPassword) return  res.status(401).json({error: "Password incorreto"})
-    return res.status(200).json("Tudo certo")
+    if(!validPassword) return  res.status(401).json({error: "Password incorreto"});
+    // return res.status(200).json("Tudo certo");
 
+    //jwt
+    let tokens = jwtTokens(users.rows[0]);
+    res.cookie('refresh_token',tokens.refreshToken,{httpOnly:true});
+    res.json(tokens)
 
-    } catch {
-        res.status(401).json("Deu errado")
+    } catch (error) {
+        res.status(401).json({error: error.message})
     }
 })
 
