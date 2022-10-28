@@ -10,14 +10,10 @@ const authRouter = require('./routes/authRouter')
 
 dotenv.config();
 
-
-
-app.use(bodyParser.urlencoded());
-
-app.use('/user', userRouter)
-//Assim estaremos dizendo que sempre que o caminho for /user iremos usar essa rota userRouter
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/',userRouter)
+app.use('/user', userRouter)
 app.use('/auth', authRouter)
 
 
