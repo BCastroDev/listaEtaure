@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController')
+// const userController = require('../controllers/userController')
 const pool = require('../db/db.js')
 const bcrypt = require('bcrypt')
 
 
-router.post('/register',userController.register)
+// router.post('/register',userController.register)
 // router.post('/login', userController.login)
 
 router.get('/users', async (req,res)=>{
@@ -17,7 +17,7 @@ router.get('/users', async (req,res)=>{
     }
 })
 
-router.post('/add', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     console.log(req.body)
     try {
         const hashedPassword = await bcrypt.hash(req.body.password,10);

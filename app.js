@@ -18,4 +18,4 @@ app.use('/auth', authRouter)
 
 
 
-app.listen(process.env.PORT, ()=>{console.log("Server running" )})
+app.listen(process.env.PORT, ()=>{console.log("Servidor rodando. http://localhost:" + process.env.PORT +"/users" )})
