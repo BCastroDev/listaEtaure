@@ -5,6 +5,17 @@ const bcrypt = require('bcrypt')
 
 const userController = require("../controllers/userController")
 
+//EJS
+router.get('/', async (req,res)=>{
+    try {
+        const users = await pool.query('SELECT * FROM users');
+        res.render("index",{users : users.rows})
+
+
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+})
 
 
 router.get('/users', async (req,res)=>{

@@ -29,15 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // const userController = require('./controllers/userController');
 
-//EJS
-app.get('/', (req,res)=>{
-    // const teste2 = ["aaaa", "bbb", "ccc"]
-    const teste = ()=>{
 
-    }
-    console.log(teste)
-    res.render("index", {teste})
-})
 
 
 
