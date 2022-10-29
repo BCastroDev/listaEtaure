@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-// const userController = require('../controllers/userController')
-const pool = require('../db/db.js')
+const pool = require('../db/db.js')  //conexão com o DB
 const bcrypt = require('bcrypt')
 
+const userController = require("../controllers/userController")
 
-// router.post('/register',userController.register)
-// router.post('/login', userController.login)
+
 
 router.get('/users', async (req,res)=>{
     try {

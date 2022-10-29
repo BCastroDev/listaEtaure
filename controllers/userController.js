@@ -1,3 +1,5 @@
+//Aqui nos encapsulamos tudo com {...} porque na hora de exportar vai tudo junto
+
 const userController = {
 
     register:function (req,res){
