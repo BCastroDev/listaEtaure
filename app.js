@@ -19,17 +19,24 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //definição das rotas
 app.use('/',userRouter)
-app.use('/users', userRouter)
+// app.use('/users', userRouter)  //esta duplicando users/users/
 app.use('/auth', authRouter)
 
 
 //Para importarmos o CSS pro EJS
-const path = require("path")
+const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
+
+// const userController = require('./controllers/userController');
 
 //EJS
 app.get('/', (req,res)=>{
-    res.render("index")
+    // const teste2 = ["aaaa", "bbb", "ccc"]
+    const teste = ()=>{
+
+    }
+    console.log(teste)
+    res.render("index", {teste})
 })
 
 
