@@ -2,11 +2,14 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/db.js')  //conexão com o DB
 const bcrypt = require('bcrypt')
-const loggedUser = require("./authRouter")
+// const loggedUser = require("./authRouter")
 // const userController = require("../controllers/userController")
 
+const loggedUser = ""
+
 //EJS
-router.get('/', async (req,res)=>{
+router.get('/pagina', async (req,res)=>{
+
 
     console.log(loggedUser)
 
@@ -20,6 +23,17 @@ router.get('/', async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 })
+
+
+router.get('/', async (req, res)=>{
+
+    if (loggedUser) {
+        const lists = await pool.query('SELECT lists FROM users where user_id = loggedUser');
+        res.send(lists)
+    }
+
+else { res.send("Faça login antes de continuar") }
+} )
 
 
 router.get('/users', async (req,res)=>{

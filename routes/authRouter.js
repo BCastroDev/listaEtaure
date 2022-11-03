@@ -1,4 +1,4 @@
-//Este arquivo é dedicado apenas para o login
+//Este arquivo é dedicado apenas para o /login
 
 const express = require('express')
 const pool = require('../db/db.js')
