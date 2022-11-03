@@ -2,11 +2,15 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/db.js')  //conexão com o DB
 const bcrypt = require('bcrypt')
-
-const userController = require("../controllers/userController")
+const loggedUser = require("./authRouter")
+// const userController = require("../controllers/userController")
 
 //EJS
 router.get('/', async (req,res)=>{
+
+    console.log(loggedUser)
+
+
     try {
         const users = await pool.query('SELECT * FROM users');
         res.render("index",{users : users.rows})
