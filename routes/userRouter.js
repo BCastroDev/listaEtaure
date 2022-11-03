@@ -36,6 +36,11 @@ else { res.send("Faça login antes de continuar") }
 } )
 
 
+router.get('/logout', async (req, res)=>{
+    loggedUser = ""
+} )
+
+
 router.get('/users', async (req,res)=>{
     try {
         const users = await pool.query('SELECT * FROM users');
@@ -58,5 +63,12 @@ router.post('/register', async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 })
+
+//Rotas de controle das listas
+router.get('/list/:id', async (req, res)=>{})
+router.post('/list/newlist', async (req, res)=>{})
+router.post('/list/updatelist/:id', async (req, res)=>{})
+router.post('/list/deletelist/:id', async (req, res)=>{})
+
 
 module.exports = router;
